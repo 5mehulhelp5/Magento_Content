@@ -1,0 +1,101 @@
+install Elasticsearch 8 
+
+### Step 1: Stop and Remove Elasticsearch 7 (Optional)
+
+. **Stop Elasticsearch 7**:
+   sudo systemctl stop elasticsearch
+
+. **Remove Elasticsearch 7**:
+   sudo apt-get remove --purge elasticsearch
+   sudo apt-get autoremove
+
+### Step 2: Install Prerequisites
+
+. **Install OpenJDK 11**:
+   sudo apt-get update
+   sudo apt-get install openjdk-11-jdk
+
+. **Install Elasticsearch**:
+   sudo apt-get install elasticsearch
+
+### Step 3: Configure and Start Elasticsearch
+
+. **(Optional) Edit the Elasticsearch Configuration**:
+   sudo nano /etc/elasticsearch/elasticsearch.yml
+
+   and add path
+   path.logs: /var/log/elasticsearch
+   path.repo: ["/mnt/backups"]
+   indices.id_field_data:
+   enabled: true
+
+   and if dont want to add password so add
+   xpack.security.enabled: false
+   xpack.security.transport.ssl.enabled: false
+
+
+
+. **Enable Elasticsearch to Start on Boot**:
+   sudo systemctl enable elasticsearch
+
+. **Start Elasticsearch**:
+    sudo systemctl start elasticsearch
+    sudo systemctl restart elasticsearch
+
+. **Check the Status of Elasticsearch**:
+    sudo systemctl status elasticsearch
+
+### Step 4: Verify Installation
+
+. **Verify that Elasticsearch is Running**:
+    curl -X GET "localhost:9200/"
+
+if facing space Storage Heap issue
+-----------------------------------
+
+update
+sudo nano /etc/elasticsearch/jvm.options
+
+-Xms2g
+-Xmx2g
+
+to
+
+-Xms1g
+-Xmx1g
+
+
+
+if not working then set
+-------------------------------
+
+php bin/magento config:set catalog/search/engine elasticsearch8
+php bin/magento config:set catalog/search/elasticsearch8_server_hostname localhost
+php bin/magento config:set catalog/search/elasticsearch8_server_port 9200
+php bin/magento config:set catalog/search/elasticsearch8_enable_auth 0
+php bin/magento config:set catalog/search/elasticsearch8_server_timeout 15
+
+if connection stauts is red then
+-------------------------------------
+check health
+curl -X GET "http://localhost:9200/_cluster/health?pretty"  
+
+delete that red index
+curl -X DELETE "http://localhost:9200/magento2_product_1_v143"
+
+enable routings
+
+curl -X PUT "http://localhost:9200/_cluster/settings" -H 'Content-Type: application/json' -d'
+{
+  "persistent": {
+    "cluster.routing.allocation.enable": "all"
+  },
+  "transient": {
+    "cluster.routing.allocation.enable": "all"
+  }
+}'
+
+
+Restart elastic search
+sudo service elasticsearch restart
+
