@@ -1,0 +1,36 @@
+Steps to install PWA with magento
+-----------------------------------------
+install node, npm,nvm,yarn,
+
+at magento end need to install and enable these extentions
+sudo composer require magento/pwa
+sudo php bin/magento module:enable --clear-static-content Magento_ContactGraphQlPwa
+sudo php bin/magento module:enable --clear-static-content Magento_NewsletterGraphQlPwa
+sudo php bin/magento module:enable --clear-static-content Magento_QuoteGraphQlPwa
+
+- execute command  on the root folder of server
+  yarn create @magento/pwa
+
+- fillup all the details white setup and wait un till complete 
+
+- go inside the created folder 
+cd foldername
+
+setup .env  
+IMAGE_OPTIMIZING_ORIGIN=backend
+MAGENTO_BACKEND_EDITION=MOS
+CUSTOM_ORIGIN_EXACT_DOMAIN="pwa.dev"
+
+
+- yarn run buildpack create-custom-origin ./
+- yarn run buildpack create-custom-origin ./packages/venia-concept/
+
+if getting error of routiness
+- export NODE_OPTIONS=--openssl-legacy-provider
+
+then again run
+- yarn run buildpack create-custom-origin ./
+
+- yarn watch
+
+here the server is started and you will get the pwa url

@@ -1,0 +1,23 @@
+ Magento PWA interview Questions:
+ ---------------------------------
+
+1. What is a Progressive Web App (PWA)?
+   - A PWA is a web application that combines web and mobile app features for a seamless user experience.
+
+2. Why are PWAs important for Magento e-commerce websites?
+   - PWAs enhance performance, offline access, and user engagement for improved customer experience and conversions.
+
+3. How can Magento integrate with PWAs?
+   - Magento integrates with PWAs using Magento PWA Studio, which provides developer tools for building a PWA on top of Magento.
+
+4. What are the benefits of using Magento PWA Studio for building PWAs?
+   - Magento PWA Studio streamlines development, boosts frontend performance, and leverages Magento's backend capabilities for modern PWA storefronts.
+
+5. Can you explain the technology stack used in Magento PWA Studio?
+   - Magento PWA Studio uses React, Redux, GraphQL, Webpack, Babel, and ESLint for building efficient PWAs on Magento.
+
+6. What are some key considerations for optimizing a Magento PWA for performance?
+   - Key considerations include efficient data fetching with GraphQL, service worker usage for caching, and optimizing images and assets.
+
+7. How does Magento PWA Studio handle responsive design and mobile optimization?
+   - Magento PWA Studio adopts a mobile-first approach, ensuring responsive design and full mobile optimization for the PWA storefront.  

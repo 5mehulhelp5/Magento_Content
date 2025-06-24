@@ -1,0 +1,15 @@
+Create User in Mysql cmd line
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY '1234';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1234';
+
+CREATE USER 'kunal'@'localhost' IDENTIFIED WITH caching_sha2_password BY '1234';
+
+ALTER USER 'kunal'@'localhost' IDENTIFIED WITH mysql_native_password BY '1234';
+
+GRANT ALL PRIVILEGES ON *.* TO 'kunal'@'localhost' WITH GRANT OPTION;
+exit
+
+
+
+CREATE USER 'kunal'@'localhost' IDENTIFIED BY 'venture7';

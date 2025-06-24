@@ -1,0 +1,127 @@
+Install Magento 2.4.6 in Windows 10 
+-----------------------------------------
+
+For windows 10 perform below steps to install xampp , composer and elastic search
+1)Install xampp server
+www.apachefriends.org/download.html
+
+2)Install composer 
+getcomposer.org/download/
+
+3)Install elastic search v7.6.0 (Java JDK is prerequisite for elastic search  installation )
+www.elastic.co/downloads/past-releases#elasticsearch 
+
+To run elastic search run below mentioned command on elastic search folder
+.\bin\elasticsearch.bat
+
+To check elastic search running properly hit below link on browser
+http://localhost:9200/
+
+In the php.ini file, find these rows and remove ; before each row:
+
+;extension=intl
+;extension=soap
+;extension=sockets
+;extension=sodium
+;extension=xsl
+;extension=zip
+
+Expand memory_limit to 4G:
+
+max_execution_time=18000
+max_input_time=1800
+memory_limit=4G
+Steps to install magento:
+
+1)Create magento2 folder 
+
+2)composer.phar global config http-basic.repo.magento.com abeffa5b80eb43d4ba2a78d0aa4e3696 635c95a490c8682aa942f4cb469e898a
+
+3)composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition ./
+
+4)Create DB magento2
+
+5)Install magento command
+php bin/magento setup:install --base-url="http://127.0.0.1/magento2" --db-host="127.0.0.1" --db-name="magento2" --db-user="root" --db-password="" --admin-firstname="admin" --admin-lastname="new" --admin-email="admin@example.com" --admin-user="admin" --admin-password="admin123" --language="en_US" --currency="USD" --timezone="America/Chicago" --use-rewrites=1 --backend-frontname="admin" --search-engine="elasticsearch7" --elasticsearch-host="127.0.0.1" --elasticsearch-port="9200"
+
+
+6)Gd2 wrong file error resolve
+
+vendor\magento\framework\Image\Adapter\Gd2.php
+
+Replace with below function
+
+private function validateURLScheme(string $filename) : bool
+  {
+      $allowed_schemes = ['ftp', 'ftps', 'http', 'https'];
+      $url = parse_url($filename);
+      if ($url && isset($url['scheme']) && !in_array($url['scheme'], $allowed_schemes) && !file_exists($filename)) {
+          return false;
+      }
+
+      return true;
+  }
+
+Run below commands:
+
+php bin/magento setup:upgrade && php bin/magento setup:di:compile
+
+6)Plugin list generator error resolve 
+
+Magento\Framework\Interception\PluginListGenerator
+Replace pipe with hypen 
+
+$cacheId = implode('-', $this-scopePriorityScheme) . "-" . $this-cacheId;
+
+Run below commands:
+
+php bin/magento setup:di:compile
+php bin/magento setup:static-content:deploy -f
+php bin/magento cache:flush
+
+7)etc/di.xml
+
+search view_preprocessed
+
+Replace Symlink with Copy
+
+8)vendor\magento\framework\View\Element\Template\File
+
+Edit Validator.php using a text editor and find this line:
+
+search 
+strpos($realPath, $directory)
+
+Replace with this code:
+strpos($path, $directory)
+
+9)Run below commands install coammand again and get the success message
+
+php bin/magento setup:install --base-url="http://127.0.0.1/magento26" --db-host="127.0.0.1" --db-name="magento26" --db-user="root" --db-password="" --admin-firstname="admin" --admin-lastname="new" --admin-email="admin@example.com" --admin-user="admin" --admin-password="admin123" --language="en_US" --currency="USD" --timezone="America/Chicago" --use-rewrites=1 --search-engine="elasticsearch7" --elasticsearch-host="127.0.0.1" --elasticsearch-port="9200"
+
+Then  run all magento2 commands
+ -------------------------------------
+php bin/magento setup:upgrade && php bin/magento setup:di:compile && php bin/magento setup:static-content:deploy -f && php bin/magento indexer:reindex && php bin/magento cache:flush
+
+http://127.0.0.1/magento2/pub/
+
+php bin/magento setup:upgrade && php bin/magento setup:di:compile && php bin/magento setup:static-content:deploy -f && chmod  -R 777 app/etc/* pub/static/ var/ generated/
+
+
+If the css not loaded  Then recplace .htaccess with  .htaccess.sample  in root  var/ and  pub/static/ folder and  run deploye command
+
+
+
+for installing sample data in magento   run
+php bin/magento sampledata:deploy
+
+if asking  about keys  so add
+Username: Your public Key  2fc966a913d4e83b28041eeb3c3b72e5
+Password: Your private key. 48e05400d17ca1bcb4e693825c45416e
+
+and run all magento commands
+
+
+Create  new admin user
+
+php bin/magento admin:user:create --admin-user=admin007 --admin-password=sst123456 --admin-email=hi@mageplaza.com --admin-firstname=Mageplaza --admin-lastname=Family

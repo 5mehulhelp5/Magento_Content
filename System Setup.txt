@@ -1,0 +1,101 @@
+install nginx, mariadb
+
+GRANT ALL ON *.* TO 'amit'@'localhost' IDENTIFIED BY 'amit' WITH GRANT OPTION;
+
+CREATE USER 'test_db_admin'@'localhost' IDENTIFIED BY '';
+GRANT ALL PRIVILEGES ON * . * TO 'test_db_admin'@'localhost';
+FLUSH PRIVILEGES;
+
+sudo apt install php5.6-fpm
+sudo apt install php7.0-fpm
+sudo apt install php7.1-fpm
+sudo apt install php7.2-fpm
+sudo apt install php7.3-fpm
+sudo apt install php7.4-fpm
+sudo apt install php8.0-fpm
+sudo apt install php8.1-fpm
+sudo apt install php8.2-fpm
+
+
+sudo update-alternatives --set php /usr/bin/php7.4
+
+sudo apt install php7.4 php7.4-Common php7.4-Gmp php7.4-Curl php7.4-Soap php7.4-Bcmath php7.4-Intl php7.4-Mbstring php7.4-Xmlrpc php7.4-Mcrypt php7.4-Mysql php7.4-Gd php7.4-Xml php7.4-Cli php7.4-Zip
+
+vim /etc/php/7.4/fpm/php.ini
+set values - 
+memory_limit = 2G
+max_execution_time = 1800
+zlib.output_compression = On
+
+Elasticsearch install
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo sh -c 'echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
+sudo apt update
+sudo apt install elasticsearch
+sudo systemctl enable elasticsearch.service
+sudo systemctl start elasticsearch.service
+
+
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.4.3 /home/amit/development/magento243
+
+cd /home/amit/development/magento243
+sudo find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
+sudo find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
+sudo chown -R :www-data . # Ubuntu
+sudo chmod u+x bin/magento
+
+
+
+php bin/magento setup:install \
+--base-url=http://magento243.local \
+--db-host=localhost \
+--db-name=magento_243 \
+--db-user=amit \
+--db-password=amit \
+--admin-firstname=admin \
+--admin-lastname=admin \
+--admin-email=amit.mishra@techvalens.com \
+--admin-user=admin \
+--admin-password=Admin@123 \
+--language=en_US \
+--currency=USD \
+--timezone=America/Chicago \
+--use-rewrites=1
+
+
+vim /etc/nginx/sites-available/magento
+upstream fastcgi_backend {
+  server  unix:/run/php/php7.4-fpm.sock;
+}
+
+server {
+
+  listen 80;
+  server_name testsdelicatessen.local;
+  set $MAGE_ROOT /home/amit/development/testdeli-M24;
+  include /home/amit/development/testdeli-M24/nginx.conf.sample;
+}
+
+ln -s /etc/nginx/sites-available/magento /etc/nginx/sites-enabled
+
+
+127.0.1.1 magento243.local
+127.0.1.1 testsdelicatessen.local
+127.0.1.1 testlocal.local
+
+nginx.conf.sample
+# START - Multisite customization
+fastcgi_param MAGE_RUN_TYPE $MAGE_RUN_TYPE;
+fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
+# END - Multisite customization
+
+
+select * from  core_config_data where path like "%mageworx_giftcards%";
+delete from core_config_data where config_id in (1957,1958,1959,1960,1961,1952,1953,1954,1955,1956,1962);
+select * from eav_attribute where backend_model like "%magwWorx%";
+delete from eav_attribute where attribute_id in (339,340);
+select * from catalog_eav_attribute where apply_to like "%mageworx_giftcards%";
+delete from catalog_eav_attribute where attribute_id in (338,341,342,343,344);
+
+
+

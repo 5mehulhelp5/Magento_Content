@@ -1,0 +1,47 @@
+Magento Questions
+
+1)Can you explain the key features and functionalities of Magento?
+ans-: Magento is an e-commerce platform known for its scalability, flexibility, and extensive feature set,
+ including product management, order processing, SEO optimization, multi-store capabilities, and more.
+
+2)Describe your experience in developing custom Magento modules or extensions.
+ans-: I have significant experience in developing custom Magento modules and extensions. I have worked on various
+ projects where I created extensions to add specific functionality to the Magento store.
+
+3)How do you optimize the performance of a Magento website? Share your strategies and techniques.
+ans:To optimize Magento's performance, I employ techniques like caching, optimizing code and database queries,
+ enabling Magento's full-page caching, and implementing server-side optimizations like Varnish caching.
+
+4)Have you integrated Magento with any third-party systems, such as payment gateways or ERP systems? If yes, provide examples and explain the process.
+ans:Yes, I have integrated Magento with third-party systems such as payment gateways (e.g., PayPal, Stripe) 
+and ERP systems (e.g., SAP, Oracle). The integration involved configuring APIs, mapping data between systems, and ensuring smooth data exchange.
+
+5)What are the differences between Magento 1 and Magento 2? Have you migrated or upgraded a Magento website from version 1 to version 2?
+ans:Magento 2 is the newer version and has several improvements over Magento 1, such as improved performance, 
+better admin interface, enhanced security features, and support for newer PHP versions. Yes, I have experience
+ in migrating Magento 1 stores to Magento 2.
+
+6)Explain the Magento theme development process. How do you customize the look and appearance of a Magento store?
+ans:Magento theme development involves creating custom templates, CSS styling, and JavaScript enhancements to
+ achieve the desired look and feel of a Magento website. I have expertise in creating custom themes and modifying 
+ existing themes.
+
+7)What is the importance of caching in Magento? How do you manage and configure cache in a Magento project?
+ans:Caching plays a crucial role in enhancing Magento's performance. I configure caching options in Magento's 
+backend, utilize full-page caching, utilize Redis or other caching mechanisms, and regularly clear and refresh
+ the cache when necessary.
+
+8)Can you discuss your experience in handling security vulnerabilities and implementing security measures in a Magento application?
+ans:I am well-versed in handling security vulnerabilities in Magento. I follow security best practices like
+ installing security patches promptly, ensuring secure coding practices, enabling SSL for secure transactions,
+  and implementing measures like two-factor authentication.
+
+9)Describe your approach to debugging and troubleshooting various issues in Magento. Share examples of complex issues you have resolved.
+ans:When troubleshooting issues in Magento, I adopt a systematic approach. I analyze logs, enable developer 
+mode for detailed error reporting, utilize debugging tools, and employ step-by-step testing to identify and
+ resolve complex issues.
+
+10)How do you stay updated with the latest trends and best practices in Magento development? Do you actively participate in the Magento community or contribute to open-source projects?
+ans:I stay updated with the latest trends and best practices in Magento by regularly reading Magento 
+documentation, following reputable blogs and forums, attending Magento events and webinars, and participating 
+in the Magento community by sharing knowledge and contributing to open-source projects.

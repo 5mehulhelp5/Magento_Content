@@ -1,0 +1,50 @@
+ 1. Difference between Magento 2 Plugin - Interceptor Around, Before & After Methods:
+   - Around: Completely replaces the original method, allowing you to modify input and output.
+   - Before: Runs before the original method, enabling parameter modification.
+   - After: Executes after the original method, enabling modification of the output.
+
+2. Difference between grouped & bundle products:
+   - Grouped: Offers separate products sold together as a group.
+   - Bundle: Allows customers to select from multiple options to create a custom product.
+
+3. Difference between simple & configurable products (why you prefer configuration on simple product with custom options):
+   - Simple: Represents a single, standalone product.
+   - Configurable: Lets customers choose from different variations of a product. Configurable products with custom options 
+   offer more flexibility.
+
+4. Single customer access on multiple Magento setups (ERP):
+   - Use Magento's multi-source inventory feature to manage stocks from different sources across setups.
+
+5. Multilingual store setup:
+   - Utilize Magento's built-in language packs to provide multilingual content and configure language-specific store views.
+
+6. ERP integration process in Magento:
+   - Identify data syncing requirements, choose an ERP integration extension, map data fields, test connections, and deploy the 
+   integration.
+
+7. Difference between Website, Store & Store View:
+   - Website: Represents a separate domain with different product catalogs.
+   - Store: Refers to different store views under a single website.
+   - Store View: Displays store content in different languages or designs.
+
+8. Advantages of Magento Commerce over Magento Community:
+   - Enhanced B2B features, advanced marketing tools, customer segmentation, and content staging.
+   
+9. Speed up first byte response from server:
+   - Optimize server configuration, use content delivery networks (CDNs), enable caching, and minimize server-side processing.  
+
+1. Re-indexing mechanism: Updates database indexes for faster data retrieval.
+2. Cache mechanism: Stores frequently accessed data for quicker retrieval.
+3. MySQL indexing mechanism: Improves query performance by organizing data for efficient retrieval.
+4. Optimizing Magento: Enhances performance by caching, indexing, and code optimization.
+5. Difference between Primary key & Unique key: Primary key uniquely identifies a record; Unique key enforces uniqueness but 
+allows NULL values.
+6. Difference between Catalog & Cart rules: Catalog rules apply to product conditions; Cart rules apply to shopping cart 
+conditions.
+7. Pricing Mechanism: Determines product prices based on rules, customer groups, and product attributes.
+8. How to optimize MySQL: Optimize queries, use indexes, optimize server configuration, and manage resources efficiently.
+9. Force cache creation in Magento: Use the command line or admin panel to trigger cache regeneration.
+10. Flat table uses: Improves database performance by storing product data in a denormalized table structure.
+11. Discount coupon for specific customer: Create a cart rule with conditions targeting specific customers.
+12. Redis & Varnish cache: Redis is an in-memory data structure store for caching; Varnish is a web application accelerator
+ for caching HTTP responses.  
