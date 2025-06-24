@@ -1,0 +1,40 @@
+How to install Magento in  Ubuntu with Apache2
+---------------------------------------------------
+
+1) first open this link and install all teh require software and  magento setup
+  https://www.thecoachsmb.com/how-to-install-magento-2-on-ubuntu/
+
+2) install mysql and phpmyadmin create the db and install magenot in it  
+
+3) after setup the apach2 and mysql with phpmyadmin you need to setup the sites available  and host like this
+
+magento.conf
+------
+<VirtualHost *:80>
+
+    ServerName magento246.com
+
+    DocumentRoot /var/www/html/Magento/magento2/pub
+    <Directory /var/www/html/Magento/magento2>
+        AllowOverride All
+        Require all granted
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+
+add this line in /etc/hosts
+-----
+
+127.0.0.1 magento246.com
+
+Commands to run after creating apache2 .conf files
+------------------------------------------------------
+
+sudo a2ensite your-config-file.conf
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+sudo systemctl restart apache2
+
+

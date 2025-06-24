@@ -1,0 +1,150 @@
+Require Magento and Server commands
+---------------------------------------------------------------------------------------------------------------------------
+
+Magento COmmands
+------------------
+
+sudo php bin/magento se:up && sudo php bin/magento s:d:c && sudo php bin/magento se:s:d -f && sudo php bin/magento indexer:reindex && sudo php bin/magento c:f && sudo chmod -R 777 generated/ pub/ var/
+
+----------
+sudo php bin/magento se:up 
+sudo php bin/magento s:d:c
+sudo php bin/magento se:s:d -f
+sudo php bin/magento indexer:reindex 
+sudo php bin/magento c:f
+sudo chmod -R 777 generated/ pub/ var/
+
+php bin/magento indexer:reset 
+
+sudo chmod -R 777 var/cache var/page_cache var/ var/log generated && sudo chmod -R 777 pub/static pub/media
+
+For creating admin user
+------------------------------
+
+sudo php bin/magento admin:user:create --admin-user=admin2 --admin-password=sst123456 --admin-email=hi@test.com --admin-firstname=Test --admin-lastname=Family
+
+
+For Js updates only
+----------------------
+sudo php bin/magento cache:flush && sudo php bin/magento setup:static-content:deploy -f && sudo rm -rf pub/static/frontend var/view_preprocessed && sudo php bin/magento cache:flush
+
+
+
+Commands to run after creating apache2 .conf files
+------------------------------------------------------
+
+sudo a2ensite your-config-file.conf
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+sudo systemctl restart apache2
+
+
+
+ When Google Chrome not working
+ --------------------------------
+
+Just remove the broken configuation by running :
+
+rm ~/.config/google-chrome/ -rf
+
+
+
+Mysql Services
+----------------
+sudo systemctl status mysql
+sudo systemctl start mysql
+sudo systemctl stop mysql
+sudo systemctl restart mysql
+
+
+Apache2 Services
+-------------------
+sudo systemctl status apache2
+sudo systemctl start apache2
+sudo systemctl restart apache2
+sudo systemctl stop apache2
+sudo systemctl reload apache2
+
+
+Elastic search
+--------------------------
+for check version : 
+curl -X GET "localhost:9200/"
+
+for status:
+sudo systemctl status elasticsearch
+sudo systemctl stop elasticsearch
+sudo systemctl restart elasticsearch
+
+checking logs:
+sudo tail -f /var/log/elasticsearch/elasticsearch.log
+for Upgrade:
+curl -X PUT "localhost:9200/_snapshot/my_backup/snapshot_1?wait_for_completion=true"
+
+for restore:
+curl -X POST "localhost:9200/_snapshot/my_backup/snapshot_1/_restore"
+
+
+
+Marketplace Access Keys MY personal
+-----------------------------------
+	
+Public Key: d0c4b2e709d54fb2cd93505bc591fc61 
+Private Key: f765687d8ec0891cb9b0dc55b1e8663d 
+
+
+Find COmmands
+------------------
+
+find /var/www/html/TWI/Core-twi-Magento-2.4.6/ -name "crontab.xml" 2>/dev/null
+find /var/www/html/TWI/Core-twi-Magento-2.4.6/ -name "catalogsearch_result_index.xml" 2>/dev/null
+find /var/www/html/TWI/Core-twi-Magento-2.4.6/ -name "jquery.stellar.min.js" 2>/dev/null
+
+
+
+Stripe Test Card
+--------------------
+
+Brand	    Number	            CVC	            Date
+
+Visa	4242424242424242	Any 3 digits	Any future date
+
+
+
+Remove all git modified files from git status
+-----------------------------------------------------
+git checkout -- .
+git reset HEAD .
+git reset --hard
+
+remove untrack file and folder from git status
+----------------------------------------------------
+git clean -f
+git clean -fd
+
+
+Find Files by name
+----------------------
+find /path/to/search -type f -name "jquery.mobile.custom.js"
+find app/ -type f -name "bootstrap.min.js"
+
+
+
+grep -r --include="*.php" '\\Magenest\\Salesforce\\Model\\ResourceModel\\Map\\' app/
+grep -r --include="*.php" '\\Amasty\\Mostviewed\\Block\\Widget\\Wrapper\\' app/
+\\\\
+
+
+for pdf pwd protected
+-------------------------
+Install qpdf: 
+sudo apt-get install qpdf
+Decrypt the PDF: 
+qpdf --decrypt encrypted_document.pdf
+
+
+
+check Jquery version
+----------------------
+
+console.log(jQuery.fn.jquery);

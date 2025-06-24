@@ -1,0 +1,79 @@
+Clean Ram Script and shortcut for ubuntu
+--------------------------------------------
+Create a sh file  with code
+
+
+#!/bin/bash
+
+# Get used memory before cleanup (in MB)
+mem_before=$(free -m | awk '/^Mem:/ {print $3}')
+
+# Ask user to proceed
+zenity --question --text="Do you want to clear memory cache?" --title="Clean RAM"
+if [ $? = 0 ]; then
+
+    # Show animated progress bar
+    (
+    echo "10" ; sleep 0.3
+    echo "# Syncing..." ; sleep 0.5
+    echo "40" ; sleep 0.3
+    echo "# Dropping caches..." ; sleep 0.7
+    sync; echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+    echo "90" ; sleep 0.3
+    echo "# Finalizing..." ; sleep 0.5
+    echo "100"
+    ) | zenity --progress --title="Cleaning RAM..." --auto-close --width=300
+
+    # Get used memory after cleanup (in MB)
+    mem_after=$(free -m | awk '/^Mem:/ {print $3}')
+    mem_freed=$((mem_before - mem_after))
+
+    # Display result
+    zenity --info \
+        --title="RAM Cleaned" \
+        --text="✅ Memory cleaned!\n\n🧠 Before: ${mem_before} MB\n🧠 After: ${mem_after} MB\n🚀 Freed: ${mem_freed} MB"
+
+fi
+
+
+
+
+🧩 Step 3: Create an App Shortcut
+Run this command:
+
+nano ~/.local/share/applications/cleanram.desktop
+A new text editor will open in the terminal.
+
+Paste this code inside (update your_username in the path):
+
+[Desktop Entry]
+Name=Clean RAM
+Comment=Click to clean memory cache
+Exec=/home/your_username/Desktop/CleanRAM.sh
+Icon=system-run
+Terminal=false
+Type=Application
+Categories=Utility;
+Replace your_username with your real username!
+
+Example: If your terminal shows:
+
+Exec=/home/kunal/Desktop/CleanRAM.sh
+Now save:
+
+Press Ctrl + O → press Enter
+Press Ctrl + X to exit
+
+✅ Step 4: Make the shortcut executable
+Run this:
+
+chmod +x ~/.local/share/applications/cleanram.desktop
+🚀 Final Step: Launch it!
+Press the Super/Windows key
+
+Search for “Clean RAM”
+
+Click it — your RAM cleaner will run 🎉
+
+(Optional: Right-click → "Add to Favorites" to pin it to the Dock)
+

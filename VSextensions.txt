@@ -1,0 +1,17 @@
+christian-kohler.path-intellisense
+esbenp.prettier-vscode
+github.copilot
+github.copilot-chat
+pkief.material-icon-theme
+rangav.vscode-thunder-client
+sburg.vscode-javascript-booster
+usernamehw.errorlens
+valeryanm.vscode-phpsab
+wallabyjs.quokka-vscode
+
+
+
+for import copy this code
+-----------------------------
+
+xargs -n 1 code --install-extension < ~/Desktop/VSextensions.txt

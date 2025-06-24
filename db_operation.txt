@@ -1,0 +1,118 @@
+mysql -u root -p core_db < /var/www/html/Kunal/DB/core-DB.sql
+mysql -u root -p core_db < /var/www/html/Kunal/DB/core-DB.sql
+mysql -u root -p core_db < /var/www/html/Kunal/DB/core-DB-utf8.sql
+mysql -u root -p core_db < /var/www/html/Kunal/DB/core-DB.sql
+
+for normal db import
+---------------------
+
+pv /var/www/html/Kunal/DB/core-DB.sql | mysql --binary-mode=1 -u root -p core_aatbs
+pv /var/www/html/Kunal/DB/core-DB.sql | mysql -u root -p core_ggs
+pv /var/www/html/Kunal/DB/core-DB.sql | mysql -u root -p core_twi
+pv /var/www/html/Kunal/DB/core-DB.sql | mysql -u root -p core_ar
+pv /var/www/html/Kunal/DB/core-DB.sql | mysql -u root -p core_tsm
+
+for dev db
+------------
+
+pv /var/www/html/Kunal/DB/DB2/core-DB.sql | mysql -u root -p core-DB
+pv /var/www/html/Kunal/DB/DB2/core-DB.sql | mysql -u root -p core-DB
+
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password123';
+FLUSH PRIVILEGES;
+
+
+
+
+mysql --default-character-set=utf8mb4 -u root -p core_aatbs < /var/www/html/Kunal/DB/aatbs-dev-magento.sql
+
+sudo mysql -u root -p core_aatbs --default-character-set=utf8mb4 < /var/www/html/Kunal/DB/aatbs-dev-magento.sql
+
+iconv -f ISO-8859-1 -t UTF-8 aatbs-dev-magento.sql -o aatbs-dev-magento-fixed.sql
+
+
+check for utf8
+file -i /var/www/html/Kunal/DB/aatbs-dev-magento.sql
+
+mysql -u root -p
+SOURCE /var/www/html/Kunal/DB/tsm-magento-backup.sql;
+SOURCE /var/www/html/Kunal/DB/ar-magento-backup.sql;
+
+
+
+SOURCE /var/www/html/Kunal/DB/abc-aatbs/aatbs_magento.sql
+SOURCE /var/www/html/Kunal/DB/aatbs/aatbs.sql
+SOURCE /var/www/html/Kunal/DB/ggs-magento--dev-backup.sql
+
+
+
+venture7
+mysql -u username -p database_name < large_file.sql
+
+
+export db using utf8
+mysqldump --default-character-set=utf8mb4 -u root -p database_name > aatbs-dev-magento.sql
+mysqldump --default-character-set=utf8mb4 -u root -p database_name > /var/www/html/Kunal/DB/aatbs-dev-magento-utf8.sql
+
+
+
+
+convert db utf8
+echo -e '\xEF\xBB\xBF' | cat - /var/www/html/Kunal/DB/aatbs-dev-magento.sql > /var/www/html/Kunal/DB/aatbs-dev-magento-utf8.sql
+file -i /var/www/html/Kunal/DB/aatbs-dev-magento-utf8.sql
+
+
+DROP DATABASE IF EXISTS core_aatbs;
+CREATE DATABASE core_aatbs DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+
+
+mysql --binary-mode=1 -u root -p core_aatbs < /home/venture7/Desktop/aatbs-dev-magento-utf8.sql
+
+pv /home/venture7/Desktop/Desktop-Files/aatbs-dev-magento-utf8.sql | mysql --binary-mode=1 -u root -p core_aatbs
+
+
+
+GGS dev server db
+
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/account', `value` = '1', `updated_at` = '2022-03-01 02:49:52' WHERE `config_id` = 1466;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/campaign', `value` = '0', `updated_at` = '2022-03-01 02:49:52' WHERE `config_id` = 1467;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/opportunity', `value` = '1', `updated_at` = '2022-07-16 05:47:31' WHERE `config_id` = 1468;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/contact', `value` = '1', `updated_at` = '2022-03-01 02:49:52' WHERE `config_id` = 1469;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/lead', `value` = '1', `updated_at` = '2022-07-16 05:50:36' WHERE `config_id` = 1470;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/order', `value` = '1', `updated_at` = '2022-07-16 05:47:31' WHERE `config_id` = 1471;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/product', `value` = '1', `updated_at` = '2022-03-01 02:49:52' WHERE `config_id` = 1472;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/subscriber', `value` = '0', `updated_at` = '2022-03-01 02:49:52' WHERE `config_id` = 1473;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/account_mode', `value` = '2', `updated_at` = '2022-07-16 05:50:36' WHERE `config_id` = 1481;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/account_time', `value` = '0', `updated_at` = '2022-03-01 02:49:52' WHERE `config_id` = 1482;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/opportunity_mode', `value` = '1', `updated_at` = '2025-04-25 06:01:58' WHERE `config_id` = 1483;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/opportunity_time', `value` = '15', `updated_at` = '2022-07-19 16:07:23' WHERE `config_id` = 1484;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/contact_mode', `value` = '2', `updated_at` = '2022-07-16 05:50:36' WHERE `config_id` = 1485;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/contact_time', `value` = '0', `updated_at` = '2022-03-01 02:49:52' WHERE `config_id` = 1486;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/order_mode', `value` = '2', `updated_at` = '2022-07-20 07:38:39' WHERE `config_id` = 1487;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/order_time', `value` = '15', `updated_at` = '2022-07-19 16:07:23' WHERE `config_id` = 1488;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/product_mode', `value` = '2', `updated_at` = '2022-07-16 05:50:36' WHERE `config_id` = 1489;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/product_time', `value` = '0', `updated_at` = '2022-03-01 02:49:52' WHERE `config_id` = 1490;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/debug_mode', `value` = '1', `updated_at` = '2022-07-15 00:52:46' WHERE `config_id` = 2484;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/personal_account', `value` = '0', `updated_at` = '2022-07-15 00:52:46' WHERE `config_id` = 2485;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/linked_account', `value` = '1', `updated_at` = '2022-07-16 05:50:36' WHERE `config_id` = 2486;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/queue_lock', `value` = '1', `updated_at` = '2025-04-25 12:11:50' WHERE `config_id` = 2490;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/sync/lead_mode', `value` = '2', `updated_at` = '2022-07-16 05:50:36' WHERE `config_id` = 2492;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/is_connected', `value` = '1', `updated_at` = '2025-02-07 04:02:44' WHERE `config_id` = 2625;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/email', `value` = 'atul.utreja@triadhq.com.venture7', `updated_at` = '2024-12-12 03:15:19' WHERE `config_id` = 2626;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/passwd', `value` = '0^9sz1jG$BcE0^9sz1jG$BcE11112', `updated_at` = '2025-02-07 04:01:49' WHERE `config_id` = 2627;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/client_id', `value` = '3MVG9L6vUmMQkenPk8ZiyzqFsJQUOVTUD6ivg03GKsek7YDSFQ1sBmbhNcMIc1I0l7eY8G47SV6j7KTaU13mP', `updated_at` = '2024-12-12 03:15:19' WHERE `config_id` = 2628;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/client_secret', `value` = '265D676E0476EBC420CC8344DC9C69D332720C0BC7397CFFEC89DB172C596C86', `updated_at` = '2024-12-12 03:15:19' WHERE `config_id` = 2629;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/security_token', `value` = 'Dr2G6RPvBtPKmYaW2xgDlqyyn', `updated_at` = '2025-04-25 06:30:29' WHERE `config_id` = 2630;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/connect_environment', `value` = '2', `updated_at` = '2024-12-12 03:15:19' WHERE `config_id` = 2631;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/salesforce_debug', `value` = '1', `updated_at` = '2022-03-21 02:05:08' WHERE `config_id` = 2632;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/instance_url', `value` = 'https://triadhq--venture7.sandbox.my.salesforce.com', `updated_at` = '2025-02-07 04:02:44' WHERE `config_id` = 2668;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/access_token', `value` = '00DVC000000iqvl!AQEAQNKp7CJdRkpGaaQV50fhS4xO_pdLBlfUCS.gEv0VPegnq.OBGiF3mj._41EaK3Kdhyg6y6iaiyNIedu9ypRo21Z4qnXk', `updated_at` = '2025-04-25 06:25:22' WHERE `config_id` = 2669;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/config/refresh_token', `value` = '5Aep861NZD_RZj0ZDI0Bzv5sZn1grroSFAOouY9kf93uJ0m7.zVx7zYMzHwThufyF_ZnElstkgpJvmNZZd8Nb15', `updated_at` = '2025-02-07 04:02:44' WHERE `config_id` = 2670;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/shipping/product_id', `value` = '01t8c00000OUPZzAAP', `updated_at` = '2025-02-07 04:02:44' WHERE `config_id` = 2671;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/shipping/pricebookentry_id', `value` = '01u8c00000I30t4AAB', `updated_at` = '2025-02-07 04:02:44' WHERE `config_id` = 2672;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/tax/product_id', `value` = '01t8c00000OUPa4AAH', `updated_at` = '2025-02-07 04:02:45' WHERE `config_id` = 2673;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/tax/pricebookentry_id', `value` = '01u8c00000I30t9AAB', `updated_at` = '2025-02-07 04:02:45' WHERE `config_id` = 2674;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/discount/product_id', `value` = '01t8c00000OUPa9AAH', `updated_at` = '2025-02-07 04:02:46' WHERE `config_id` = 2675;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/discount/pricebookentry_id', `value` = '01u8c00000I30tEAAR', `updated_at` = '2025-02-07 04:02:46' WHERE `config_id` = 2676;
+UPDATE `core_config_data` SET `scope` = 'default', `scope_id` = 0, `path` = 'salesforcecrm/pricebook/standard_pricebook_id', `value` = '01s8c000008xJ4AAAU', `updated_at` = '2025-02-12 04:53:24' WHERE `config_id` = 2677;
